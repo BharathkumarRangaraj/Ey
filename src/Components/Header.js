@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import APIFETCH from "../utils/const";
 
 const Header = () => {
   const [searchtext, setsearchtext] = useState("");
+  const [text, setText] = useState("");
   const [suggest, setsuggest] = useState([]);
   const [showsuggetion, setshowsuggetion] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   console.log(suggest, "suggest");
 
@@ -38,6 +40,10 @@ const Header = () => {
             placeholder="Try Searching "
           />
         </li>
+        <button onClick={() => startTransition(() => setText(searchtext))}>
+          search
+        </button>
+
         <div className="bg-white rounded-lg py-2 px-2 shadow-lg border border-gray-200 visible fixed">
           {showsuggetion && (
             <ul className="fixed w-[32rem]">

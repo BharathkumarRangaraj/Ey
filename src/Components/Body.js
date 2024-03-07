@@ -13,6 +13,7 @@ const Body = () => {
   async function getAPI() {
     const data = await fetch(APIFETCH);
     const json = await data?.json();
+
     setImages(json);
   }
   return (
